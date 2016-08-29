@@ -40,7 +40,7 @@ import static java.time.format.DateTimeFormatter.ISO_INSTANT;
  *
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
-public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterSerializable {
+public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterSerializable, JsonData {
 
   private Map<String, Object> map;
 
@@ -674,6 +674,7 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
    *
    * @return the string encoding.
    */
+  @Override
   public String encode() {
     return Json.encode(map);
   }
@@ -684,6 +685,7 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
    *
    * @return the pretty string encoding.
    */
+  @Override
   public String encodePrettily() {
     return Json.encodePrettily(map);
   }
@@ -735,6 +737,7 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
    * Get the number of entries in the JSON object
    * @return the number of entries
    */
+  @Override
   public int size() {
     return map.size();
   }
@@ -749,10 +752,11 @@ public class JsonObject implements Iterable<Map.Entry<String, Object>>, ClusterS
   }
 
   /**
-   * Is this object entry?
+   * Has this object any entry?
    *
    * @return true if it has zero entries, false if not.
    */
+  @Override
   public boolean isEmpty() {
     return map.isEmpty();
   }

@@ -38,7 +38,7 @@ import static java.time.format.DateTimeFormatter.ISO_INSTANT;
  *
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
-public class JsonArray implements Iterable<Object>, ClusterSerializable {
+public class JsonArray implements Iterable<Object>, ClusterSerializable, JsonData {
 
   private List<Object> list;
 
@@ -490,6 +490,7 @@ public class JsonArray implements Iterable<Object>, ClusterSerializable {
    *
    * @return the number of items
    */
+  @Override
   public int size() {
     return list.size();
   }
@@ -499,6 +500,7 @@ public class JsonArray implements Iterable<Object>, ClusterSerializable {
    *
    * @return true if zero, false otherwise
    */
+  @Override
   public boolean isEmpty() {
     return list.isEmpty();
   }
@@ -537,6 +539,7 @@ public class JsonArray implements Iterable<Object>, ClusterSerializable {
    *
    * @return the string encoding
    */
+  @Override
   public String encode() {
     return Json.encode(list);
   }
@@ -546,6 +549,7 @@ public class JsonArray implements Iterable<Object>, ClusterSerializable {
    *
    * @return the string encoding
    */
+  @Override
   public String encodePrettily() {
     return Json.encodePrettily(list);
   }
